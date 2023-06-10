@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, Image, StyleSheet, TextInput, Dimensions, Pressable } from 'react-native';
+import { View, Image, StyleSheet, TextInput, Dimensions, Pressable } from 'react-native';
 
 export default function InputField(props) {
     const [isPasswordSecure, setIsPasswordSecure] = useState(props.isPassword);
@@ -34,8 +34,7 @@ export default function InputField(props) {
 
 const styles = StyleSheet.create({
     input: {
-      height: 40,
-      margin: 12,
+    //   margin: 12,
       padding: 10,
       backgroundColor: '#fff',
       width: Dimensions.get('window').width - 32,
@@ -50,7 +49,7 @@ const styles = StyleSheet.create({
     },
     passwordIcon: {
         position: 'absolute',
-        right: 25,
+        right: 22,
         top: 18,
     }
 });

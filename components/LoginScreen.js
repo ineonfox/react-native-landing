@@ -1,5 +1,6 @@
 import { View, Text, Image, StyleSheet, SafeAreaView, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import InputField from './InputField';
+import DropdownField from './DropdownField';
 
 export default function LoginScreen() {
     return (
@@ -10,7 +11,14 @@ export default function LoginScreen() {
                 <InputField placeholder="Cognome" valueType="text" contentType="name" />
                 <InputField placeholder="E-mail" valueType="email" contentType="emailAddress" />
                 <InputField placeholder="Password" valueType="text" isPassword contentType="password" />
-                <InputField placeholder="Nazionalità" valueType="text" isComboBox />
+                <DropdownField 
+                    placeholder="Nazionalità" 
+                    options={[{name: "Italia", uri: require("../assets/italy.png") },
+                            { name: "Francia", uri: require("../assets/france.png") }, 
+                            { name: "Germania", uri: require("../assets/germany.png") }
+                    ]}
+                    images={["italy.png", "france.png", "germany.png"]}    
+                />
             </SafeAreaView>
         </TouchableWithoutFeedback>
     );
