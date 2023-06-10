@@ -9,8 +9,8 @@ export default function LoginScreen() {
                 <InputField placeholder="Nome" valueType="text" contentType="givenName" />
                 <InputField placeholder="Cognome" valueType="text" contentType="name" />
                 <InputField placeholder="E-mail" valueType="email" contentType="emailAddress" />
-                <InputField placeholder="Password" valueType="password" contentType="password" />
-                <InputField placeholder="Nazionalità" valueType="text" />
+                <InputField placeholder="Password" valueType="text" isPassword contentType="password" />
+                <InputField placeholder="Nazionalità" valueType="text" isComboBox />
             </SafeAreaView>
         </TouchableWithoutFeedback>
     );
