@@ -1,6 +1,6 @@
 import { Dimensions } from "react-native";
 
-export default AppStyles = {
+export default {
   color: {
     background: "#F5F5F5",
     mainFont: "#2B2B2B",
