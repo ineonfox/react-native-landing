@@ -13,14 +13,12 @@ export default function DropdownField(props) {
     }
 
     return(
-        <View style={[{height: isComboboxOpen ? props.options.length * 56 + 54 : 54}, styles.container]}>
+        <View style={[{height: isComboboxOpen ? props.options.length * 56 + 54 : 54}, styles.container, isComboboxOpen ? styles.selectOpened : null]}>
             <Pressable style={styles.mainContainer} onPress={() => setIsComboboxOpen(!isComboboxOpen)}>
                 <Text style={[styles.containerText, {color: chosen ? '#000' : '#888'}]}>{chosen ? chosen : props.placeholder}</Text>
                 <Image style={isComboboxOpen ? {transform: [{rotate: '180deg'}]} : null} source={require('../assets/arrow_down.png')} /> 
             </Pressable>
             {props.options.map((val, i) => {
-                const imagePath = require('../assets/germany.png');
-
                 return (
                     <View style={[{display: isComboboxOpen ? 'flex' : 'none'}, styles.selectOption]}>
                         <Image style={styles.selectImage} source={val.uri} />
@@ -75,6 +73,11 @@ const styles = StyleSheet.create({
     },
     selectImage: {
         marginRight: 12
+    },
+    selectOpened: {
+        shadowOffset: {height: 4},
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
     }
 });
 
