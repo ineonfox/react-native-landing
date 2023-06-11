@@ -53,9 +53,7 @@ export default function DropdownField(props) {
             onPress={(e) => onPressHandler(e, val.name)}
           >
             <Image style={styles.selectImage} source={val.uri} />
-            <Text style={styles.containerText}>
-              {val.name}
-            </Text>
+            <Text style={styles.containerText}>{val.name}</Text>
           </Pressable>
         );
       })}

@@ -23,19 +23,42 @@ export default function LoginScreen({ navigation }) {
   const [country, setCountry] = useState("");
 
   const onPressLoginHandler = () => {
-    if(!name || !surname || !email || !password || !country) { 
-      Alert.alert('Fields not filled out', 'Please fill up all fields to login', [
-        {text: 'OK'},
-      ]);
+    if (!name || !surname || !email || !password || !country) {
+      Alert.alert(
+        "Fields not filled out",
+        "Please fill up all fields to login",
+        [{ text: "OK" }]
+      );
       return;
     }
-    navigation.navigate("Profile", {
-      name,
-      surname,
-      email,
-      password,
-      country,
-    });
+
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    };
+    console.log(requestOptions.body);
+    fetch("https://sicce-test.thingscloud.it/api/mobile/login", requestOptions)
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.result) {
+          navigation.navigate("Profile", {
+            name,
+            surname,
+            email,
+            password,
+            country,
+          });
+        } else {
+          if ((data.error = "INVALID_USER_OR_PASSWORD")) {
+            Alert.alert(
+              "Invalid E-mail or Password",
+              'Please, enter correct E-mail and password or press "Password dimenticata?" button',
+              [{ text: "OK" }]
+            );
+          }
+        }
+      });
   };
 
   const onNameChangeHandler = (value) => {

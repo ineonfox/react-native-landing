@@ -1,10 +1,4 @@
-import {
-  SafeAreaView,
-  Text,
-  StyleSheet,
-  Image,
-  Pressable,
-} from "react-native";
+import { SafeAreaView, Text, StyleSheet, Image, Pressable } from "react-native";
 import SettingField from "./SettingField";
 import ConnectedSettings from "./ConnectedSettings";
 import { ScrollView } from "react-native";
