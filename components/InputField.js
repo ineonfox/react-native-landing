@@ -10,6 +10,8 @@ import {
 
 export default function InputField(props) {
   const [isPasswordSecure, setIsPasswordSecure] = useState(props.isPassword);
+  const passwordHidden = require("../assets/password_eye.png");
+  const passwordOpen = require("../assets/password_eye_open.png");
 
   return (
     <View>
@@ -28,7 +30,7 @@ export default function InputField(props) {
           style={styles.passwordIcon}
           onPress={() => setIsPasswordSecure(!isPasswordSecure)}
         >
-          <Image source={require("../assets/password_eye.png")} />
+          <Image source={isPasswordSecure ? passwordHidden : passwordOpen} />
         </Pressable>
       )}
     </View>
