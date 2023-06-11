@@ -47,7 +47,8 @@ export default function LoginScreen({ navigation }) {
     setPassword(value);
   };
 
-  const onCountrySelectHandler = (value) => {
+  const onCountrySelectHandler = (e, value) => {
+    console.log(value);
     setCountry(value);
   };
 

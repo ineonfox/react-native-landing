@@ -9,6 +9,8 @@ import {
 import SettingField from "./SettingField";
 
 export default function ProfileScreen({ navigation, route }) {
+  var passwordHidden = '*'.repeat(route.params.password.length);
+
   const onPressBackHandler = () => {
     navigation.goBack();
   };
@@ -24,9 +26,9 @@ export default function ProfileScreen({ navigation, route }) {
             Account Settings
           </Text>
         </Pressable>
-        <SettingField hasAction label="Email" text="Sara12345t3@gmail.com" />
-        <SettingField hasAction label="Change Password" text="************" />
-        <SettingField label="Country Settings" text="Italy" />
+        <SettingField hasAction label="Email" text={route.params.email} />
+        <SettingField hasAction label="Change Password" text={passwordHidden} />
+        <SettingField label="Country Settings" text={route.params.country} />
         <SettingField hasAction label="Language" text="English (UK)" />
         <Text style={[styles.legalLabel, styles.text]}>Legal</Text>
       </View>
