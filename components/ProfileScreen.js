@@ -1,9 +1,55 @@
-import { View } from 'react-native';
+import {
+  SafeAreaView,
+  Text,
+  StyleSheet,
+  View,
+  Image,
+  Pressable,
+} from "react-native";
 
-export default function ProfileScreen() {
-    return (
-        <View>
+export default function ProfileScreen({ navigation }) {
+  const onPressBackHandler = () => {
+    navigation.goBack();
+  };
 
-        </View>
-    );
+  return (
+    <SafeAreaView
+      style={[{ marginLeft: 16, marginRight: 16 }, styles.container]}
+    >
+      <View style={[{ width: "100%" }, styles.container]}>
+        <Pressable style={styles.row} onPress={onPressBackHandler}>
+          <Image source={require("../assets/arrow_back.png")} />
+          <Text style={[{ marginLeft: 16 }, styles.text]}>
+            Account Settings
+          </Text>
+        </Pressable>
+        <Text style={[styles.legalLabel, styles.text]}>Legal</Text>
+      </View>
+    </SafeAreaView>
+  );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#f5f5f5",
+    alignItems: "center",
+    justifyContent: "flex-start",
+    marginTop: 29,
+  },
+  row: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    width: "100%",
+  },
+  text: {
+    fontSize: 24,
+    fontFamily: "Cabin-Bold",
+  },
+  legalLabel: {
+    marginTop: 28,
+    marginBottom: 28,
+    alignSelf: "flex-start",
+  },
+});
