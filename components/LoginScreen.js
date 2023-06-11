@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
   Dimensions,
+  Alert,
 } from "react-native";
 import InputField from "./InputField";
 import DropdownField from "./DropdownField";
@@ -15,13 +16,19 @@ import BigButton from "./BigButton";
 import { useState } from "react";
 
 export default function LoginScreen({ navigation }) {
-  const [name, setName] = useState();
-  const [surname, setSurname] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [country, setCountry] = useState();
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [country, setCountry] = useState("");
 
   const onPressLoginHandler = () => {
+    if(!name || !surname || !email || !password || !country) { 
+      Alert.alert('Fields not filled out', 'Please fill up all fields to login', [
+        {text: 'OK'},
+      ]);
+      return;
+    }
     navigation.navigate("Profile", {
       name,
       surname,
@@ -48,7 +55,6 @@ export default function LoginScreen({ navigation }) {
   };
 
   const onCountrySelectHandler = (e, value) => {
-    console.log(value);
     setCountry(value);
   };
 

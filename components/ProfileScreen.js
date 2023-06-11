@@ -2,24 +2,29 @@ import {
   SafeAreaView,
   Text,
   StyleSheet,
-  View,
   Image,
   Pressable,
 } from "react-native";
 import SettingField from "./SettingField";
+import ConnectedSettings from "./ConnectedSettings";
+import { ScrollView } from "react-native";
 
 export default function ProfileScreen({ navigation, route }) {
-  var passwordHidden = '*'.repeat(route.params.password.length);
+  var passwordHidden = "*".repeat(route.params.password.length);
 
   const onPressBackHandler = () => {
     navigation.goBack();
   };
 
   return (
-    <SafeAreaView
-      style={[{ marginLeft: 16, marginRight: 16 }, styles.container]}
-    >
-      <View style={[{ width: "100%" }, styles.container]}>
+    <SafeAreaView style={styles.container}>
+      <ScrollView
+        style={[
+          { width: "100%", paddingLeft: 16, paddingRight: 16 },
+          styles.container,
+        ]}
+        contentContainerStyle={styles.scrollContainer}
+      >
         <Pressable style={styles.row} onPress={onPressBackHandler}>
           <Image source={require("../assets/arrow_back.png")} />
           <Text style={[{ marginLeft: 16 }, styles.text]}>
@@ -31,17 +36,47 @@ export default function ProfileScreen({ navigation, route }) {
         <SettingField label="Country Settings" text={route.params.country} />
         <SettingField hasAction label="Language" text="English (UK)" />
         <Text style={[styles.legalLabel, styles.text]}>Legal</Text>
-      </View>
+        <ConnectedSettings
+          items={[
+            {
+              text: "Privacy",
+              iconUri: require("../assets/cog.png"),
+              hasAction: true,
+            },
+            {
+              text: "Terms of Services",
+              iconUri: require("../assets/cog.png"),
+              hasAction: true,
+            },
+          ]}
+        />
+        <ConnectedSettings
+          items={[
+            {
+              text: "Log out",
+              iconUri: require("../assets/cog.png"),
+              hasAction: true,
+            },
+            {
+              text: "Delete Account",
+              iconUri: require("../assets/cog.png"),
+              hasAction: true,
+            },
+          ]}
+        />
+      </ScrollView>
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
   container: {
     flex: 1,
     backgroundColor: "#f5f5f5",
-    alignItems: "center",
-    justifyContent: "flex-start",
     marginTop: 29,
   },
   row: {
