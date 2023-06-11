@@ -1,7 +1,8 @@
-import { View, Text, Image, StyleSheet, SafeAreaView, TouchableWithoutFeedback, Keyboard, Dimensions, Button } from 'react-native';
+import { View, Text, Image, StyleSheet, SafeAreaView, TouchableWithoutFeedback, Keyboard, Dimensions } from 'react-native';
 import InputField from './InputField';
 import DropdownField from './DropdownField';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
+import BigButton from './BigButton';
 
 export default function LoginScreen() {
     return (
@@ -34,6 +35,11 @@ export default function LoginScreen() {
                     />
                     <Text style={styles.text}>Password dimenticata?</Text>
                 </View>
+                <BigButton title="Login" backgroundColor="#2AA9E1" style={{marginTop: 29}} />
+                {/* <View>
+                    <Text>Non hai un account?</Text>
+                    <BigButton title="Registrati" backgroundColor="#00608A" style={{marginTop: 24}} />
+                </View> */}
             </SafeAreaView>
         </TouchableWithoutFeedback>
     );
