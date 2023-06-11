@@ -6,8 +6,9 @@ import {
   Image,
   Pressable,
 } from "react-native";
+import SettingField from "./SettingField";
 
-export default function ProfileScreen({ navigation }) {
+export default function ProfileScreen({ navigation, route }) {
   const onPressBackHandler = () => {
     navigation.goBack();
   };
@@ -23,6 +24,10 @@ export default function ProfileScreen({ navigation }) {
             Account Settings
           </Text>
         </Pressable>
+        <SettingField hasAction label="Email" text="Sara12345t3@gmail.com" />
+        <SettingField hasAction label="Change Password" text="************" />
+        <SettingField label="Country Settings" text="Italy" />
+        <SettingField hasAction label="Language" text="English (UK)" />
         <Text style={[styles.legalLabel, styles.text]}>Legal</Text>
       </View>
     </SafeAreaView>
@@ -42,14 +47,15 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "center",
     width: "100%",
+    marginBottom: 20,
   },
   text: {
     fontSize: 24,
     fontFamily: "Cabin-Bold",
   },
   legalLabel: {
-    marginTop: 28,
-    marginBottom: 28,
+    marginTop: 24,
+    marginBottom: 20,
     alignSelf: "flex-start",
   },
 });
