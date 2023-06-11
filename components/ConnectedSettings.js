@@ -1,8 +1,16 @@
 import { Pressable, StyleSheet, View, Text, Image } from "react-native";
+import StylesData from "./style/StylesData";
+import AppStyles from "./style/AppStyles";
 
 export default function ConnectedSettings(props) {
   return (
-    <View style={[{ height: 65 * props.items.length }, styles.container]}>
+    <Pressable
+      style={[
+        { height: StylesData.elementHeightBigger * props.items.length },
+        styles.container,
+      ]}
+      onPress={props.onPress}
+    >
       {props.items.map((val, i) => {
         return (
           <View style={[styles.row, styles.outerRow]} key={i}>
@@ -18,14 +26,14 @@ export default function ConnectedSettings(props) {
           </View>
         );
       })}
-    </View>
+    </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    borderRadius: 10,
+    borderRadius: StylesData.borderRadius,
     backgroundColor: "#FFF",
     marginTop: 8,
     marginBottom: 8,
@@ -34,7 +42,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    height: 65,
+    height: StylesData.elementHeightBigger,
   },
   outerRow: {
     paddingLeft: 20,
@@ -43,9 +51,7 @@ const styles = StyleSheet.create({
     borderTopColor: "#F5F5F5",
   },
   text: {
-    fontSize: 18,
-    fontFamily: "Cabin-Bold",
-    color: "#2B2B2B",
+    ...AppStyles.textBig,
     marginLeft: 8,
   },
 });

@@ -7,6 +7,8 @@ import {
   Dimensions,
   Pressable,
 } from "react-native";
+import StylesData from "./style/StylesData";
+import AppStyles from "./style/AppStyles";
 
 export default function DropdownField(props) {
   const [isComboboxOpen, setIsComboboxOpen] = useState(false);
@@ -63,9 +65,9 @@ export default function DropdownField(props) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#fff",
-    width: Dimensions.get("window").width - 32,
-    borderRadius: 10,
+    backgroundColor: "#FFF",
+    width: StylesData.appWidth,
+    borderRadius: StylesData.borderRadius,
     marginBottom: 8,
     marginTop: 0,
   },
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     flexDirection: "row",
     alignItems: "center",
-    height: 54,
+    height: StylesData.elementHeight,
     borderBottomWidth: 1,
     borderColor: "#f5f5f5",
     width: "100%",
@@ -81,13 +83,11 @@ const styles = StyleSheet.create({
     paddingRight: 25,
   },
   containerText: {
-    fontSize: 16,
-    fontWeight: "600",
-    fontFamily: "Cabin-SemiBold",
-    color: "#888",
+    ...AppStyles.text,
+    color: StylesData.color.placeholder,
   },
   selectOption: {
-    height: 54,
+    height: StylesData.elementHeight,
     borderTopWidth: 1,
     marginLeft: 25,
     marginRight: 25,

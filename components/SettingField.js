@@ -1,4 +1,6 @@
 import { Pressable, StyleSheet, View, Text, Image } from "react-native";
+import AppStyles from "./style/AppStyles";
+import StylesData from "./style/StylesData";
 
 export default function SettingField(props) {
   return (
@@ -22,9 +24,9 @@ export default function SettingField(props) {
 
 const styles = StyleSheet.create({
   container: {
-    height: 65,
+    height: StylesData.elementHeightBigger,
     width: "100%",
-    borderRadius: 10,
+    borderRadius: StylesData.borderRadius,
     backgroundColor: "#FFF",
     marginTop: 4,
     marginBottom: 4,
@@ -41,13 +43,9 @@ const styles = StyleSheet.create({
     width: "50%",
   },
   labelText: {
-    fontSize: 16,
-    fontFamily: "Cabin-Bold",
-    color: "#909090",
+    fontSize: StylesData.fontSize.standard,
+    fontFamily: StylesData.fontFamily.bold,
+    color: StylesData.color.secondaryFont,
   },
-  text: {
-    fontSize: 18,
-    fontFamily: "Cabin-Bold",
-    color: "#2B2B2B",
-  },
+  text: AppStyles.textBig,
 });

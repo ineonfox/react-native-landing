@@ -2,6 +2,8 @@ import { SafeAreaView, Text, StyleSheet, Image, Pressable } from "react-native";
 import SettingField from "./SettingField";
 import ConnectedSettings from "./ConnectedSettings";
 import { ScrollView } from "react-native";
+import StylesData from "./style/StylesData";
+import AppStyles from "./style/AppStyles";
 
 export default function ProfileScreen({ navigation, route }) {
   var passwordHidden = "*".repeat(route.params.password.length);
@@ -70,7 +72,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#f5f5f5",
+    backgroundColor: StylesData.color.background,
     marginTop: 29,
   },
   row: {
@@ -80,10 +82,7 @@ const styles = StyleSheet.create({
     width: "100%",
     marginBottom: 20,
   },
-  text: {
-    fontSize: 24,
-    fontFamily: "Cabin-Bold",
-  },
+  text: AppStyles.textHuge,
   legalLabel: {
     marginTop: 24,
     marginBottom: 20,

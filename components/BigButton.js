@@ -1,4 +1,6 @@
 import { Text, StyleSheet, Dimensions, Pressable } from "react-native";
+import StylesData from "./style/StylesData";
+import AppStyles from "./style/AppStyles";
 
 export default function BigButton(props) {
   return (
@@ -19,15 +21,14 @@ export default function BigButton(props) {
 
 const styles = StyleSheet.create({
   button: {
-    width: Dimensions.get("window").width - 32,
-    borderRadius: 10,
-    height: 54,
+    width: StylesData.appWidth,
+    borderRadius: StylesData.borderRadius,
+    height: StylesData.elementHeight,
     justifyContent: "center",
   },
   text: {
+    ...AppStyles.textBigger,
     color: "#fff",
-    fontSize: 20,
-    fontFamily: "Cabin-Bold",
     textAlign: "center",
   },
 });

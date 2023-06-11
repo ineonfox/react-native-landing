@@ -6,7 +6,6 @@ import {
   SafeAreaView,
   TouchableWithoutFeedback,
   Keyboard,
-  Dimensions,
   Alert,
 } from "react-native";
 import InputField from "./InputField";
@@ -14,6 +13,8 @@ import DropdownField from "./DropdownField";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import BigButton from "./BigButton";
 import { useState } from "react";
+import AppStyles from "./style/AppStyles";
+import StylesData from "./style/StylesData";
 
 export default function LoginScreen({ navigation }) {
   const [name, setName] = useState("");
@@ -37,7 +38,7 @@ export default function LoginScreen({ navigation }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     };
-    console.log(requestOptions.body);
+
     fetch("https://sicce-test.thingscloud.it/api/mobile/login", requestOptions)
       .then((response) => response.json())
       .then((data) => {
@@ -50,13 +51,18 @@ export default function LoginScreen({ navigation }) {
             country,
           });
         } else {
+          let text;
+          let msg;
           if ((data.error = "INVALID_USER_OR_PASSWORD")) {
-            Alert.alert(
-              "Invalid E-mail or Password",
-              'Please, enter correct E-mail and password or press "Password dimenticata?" button',
-              [{ text: "OK" }]
-            );
+            text = "Invalid E-mail or Password";
+            msg =
+              'Please, enter correct E-mail and password or press "Password dimenticata?" button';
+          } else {
+            text = "Error";
+            msg = "Something went wrong. Please, try again later.";
           }
+
+          Alert.alert(text, msg, [{ text: "OK" }]);
         }
       });
   };
@@ -170,9 +176,7 @@ export default function LoginScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#f5f5f5",
-    alignItems: "center",
+    ...AppStyles.container,
     justifyContent: "flex-start",
     marginTop: 29,
   },
@@ -184,18 +188,15 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginTop: 75,
-    width: Dimensions.get("window").width - 32,
+    width: StylesData.appWidth,
   },
   textPassword: {
-    fontFamily: "Cabin-SemiBold",
+    ...AppStyles.text,
     color: "#00608A",
     textDecorationLine: "underline",
-    fontSize: 16,
   },
   text: {
-    fontFamily: "Cabin-Bold",
-    color: "#2B2B2B",
-    fontSize: 18,
+    ...AppStyles.textBig,
     textAlign: "center",
   },
   dropdownNationality: {

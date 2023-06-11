@@ -1,12 +1,7 @@
 import { useState } from "react";
-import {
-  View,
-  Image,
-  StyleSheet,
-  TextInput,
-  Dimensions,
-  Pressable,
-} from "react-native";
+import { View, Image, StyleSheet, TextInput, Pressable } from "react-native";
+import StylesData from "./style/StylesData";
+import AppStyles from "./style/AppStyles";
 
 export default function InputField(props) {
   const [isPasswordSecure, setIsPasswordSecure] = useState(props.isPassword);
@@ -39,17 +34,14 @@ export default function InputField(props) {
 
 const styles = StyleSheet.create({
   input: {
-    //   margin: 12,
+    ...AppStyles.text,
     padding: 10,
-    backgroundColor: "#fff",
-    width: Dimensions.get("window").width - 32,
-    height: 54,
-    borderRadius: 10,
-    fontSize: 16,
-    fontWeight: "600",
+    backgroundColor: "#FFF",
+    width: StylesData.appWidth,
+    height: StylesData.elementHeight,
+    borderRadius: StylesData.borderRadius,
     marginBottom: 8,
     marginTop: 0,
-    fontFamily: "Cabin-SemiBold",
     paddingLeft: 25,
   },
   passwordIcon: {
