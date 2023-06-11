@@ -12,10 +12,43 @@ import InputField from "./InputField";
 import DropdownField from "./DropdownField";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import BigButton from "./BigButton";
+import { useState } from "react";
 
-export default function LoginScreen({navigation}) {
+export default function LoginScreen({ navigation }) {
+  const [name, setName] = useState();
+  const [surname, setSurname] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [country, setCountry] = useState();
+
   const onPressLoginHandler = () => {
-    navigation.navigate('Profile')
+    navigation.navigate("Profile", {
+      name,
+      surname,
+      email,
+      password,
+      country,
+    });
+  };
+
+  const onNameChangeHandler = (value) => {
+    setName(value);
+  };
+
+  const onSurnameChangeHandler = (value) => {
+    setSurname(value);
+  };
+
+  const onEmailChangeHandler = (value) => {
+    setEmail(value);
+  };
+
+  const onPasswordChangeHandler = (value) => {
+    setPassword(value);
+  };
+
+  const onCountrySelectHandler = (value) => {
+    setCountry(value);
   };
 
   return (
@@ -30,22 +63,26 @@ export default function LoginScreen({navigation}) {
             placeholder="Nome"
             valueType="text"
             contentType="givenName"
+            onChangeText={onNameChangeHandler}
           />
           <InputField
             placeholder="Cognome"
             valueType="text"
             contentType="name"
+            onChangeText={onSurnameChangeHandler}
           />
           <InputField
             placeholder="E-mail"
             valueType="email"
             contentType="emailAddress"
+            onChangeText={onEmailChangeHandler}
           />
           <InputField
             placeholder="Password"
             valueType="text"
             isPassword
             contentType="password"
+            onChangeText={onPasswordChangeHandler}
           />
           <DropdownField
             style={styles.dropdownNationality}
@@ -56,6 +93,7 @@ export default function LoginScreen({navigation}) {
               { name: "Germania", uri: require("../assets/germany.png") },
             ]}
             images={["italy.png", "france.png", "germany.png"]}
+            onSelect={onCountrySelectHandler}
           />
           <View style={styles.loginTopContainer}>
             <BouncyCheckbox

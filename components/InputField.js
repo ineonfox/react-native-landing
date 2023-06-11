@@ -15,22 +15,22 @@ export default function InputField(props) {
     <View>
       <TextInput
         style={styles.input}
-        // onChangeText={onChangeNumber}
         inputMode={props.valueType}
         placeholder={props.placeholder}
         placeholderTextColor="#888"
         keyboardType="ascii-capable"
         secureTextEntry={isPasswordSecure}
         textContentType={props.contentType}
+        onChangeText={props.onChangeText}
       />
-      {props.isPassword ? (
+      {props.isPassword && (
         <Pressable
           style={styles.passwordIcon}
           onPress={() => setIsPasswordSecure(!isPasswordSecure)}
         >
           <Image source={require("../assets/password_eye.png")} />
         </Pressable>
-      ) : null}
+      )}
     </View>
   );
 }

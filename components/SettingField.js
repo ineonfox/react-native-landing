@@ -8,7 +8,7 @@ export default function SettingField(props) {
           <Text style={styles.labelText} numberOfLines={1}>{props.label}</Text>
           <Text style={styles.text} numberOfLines={1}>{props.text}</Text>
         </View>
-        {props.hasAction ? <Image source={require('../assets/arrow_next.png')} /> : null}
+        {props.hasAction && <Image source={require('../assets/arrow_next.png')} />}
       </View>
     </Pressable>
   );

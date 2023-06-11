@@ -10,21 +10,21 @@ import {
 
 export default function DropdownField(props) {
   const [isComboboxOpen, setIsComboboxOpen] = useState(false);
-  const [isChosen, setIsChosen] = useState(false);
   const [chosen, setChosen] = useState();
 
-  const onPressHandler = (e) => {
-    setIsChosen(true);
-    setChosen(e._dispatchInstances.memoizedProps.children);
+  const onPressHandler = (e, value) => {
+    setChosen(value);
     setIsComboboxOpen(false);
+
+    props.onSelect(e, value);
   };
 
   return (
     <View
       style={[
         { height: isComboboxOpen ? props.options.length * 56 + 54 : 54 },
+        isComboboxOpen && styles.selectOpened,
         styles.container,
-        isComboboxOpen ? styles.selectOpened : null,
         props.style,
       ]}
     >
@@ -38,24 +38,25 @@ export default function DropdownField(props) {
           {chosen ? chosen : props.placeholder}
         </Text>
         <Image
-          style={isComboboxOpen ? { transform: [{ rotate: "180deg" }] } : null}
+          style={isComboboxOpen && { transform: [{ rotate: "180deg" }] }}
           source={require("../assets/arrow_down.png")}
         />
       </Pressable>
       {props.options.map((val, i) => {
         return (
-          <View
+          <Pressable
             key={i}
             style={[
               { display: isComboboxOpen ? "flex" : "none" },
               styles.selectOption,
             ]}
+            onPress={(e) => onPressHandler(e, val.name)}
           >
             <Image style={styles.selectImage} source={val.uri} />
-            <Text style={styles.containerText} onPress={onPressHandler}>
+            <Text style={styles.containerText}>
               {val.name}
             </Text>
-          </View>
+          </Pressable>
         );
       })}
     </View>
