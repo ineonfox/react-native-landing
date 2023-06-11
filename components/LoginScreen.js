@@ -8,12 +8,14 @@ export default function LoginScreen() {
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
             <SafeAreaView style={styles.container}>
+                <View style={styles.container}>
                 <Image style={styles.logo} source={require('../assets/zepping_logo.png')}/>
                 <InputField placeholder="Nome" valueType="text" contentType="givenName" />
                 <InputField placeholder="Cognome" valueType="text" contentType="name" />
                 <InputField placeholder="E-mail" valueType="email" contentType="emailAddress" />
                 <InputField placeholder="Password" valueType="text" isPassword contentType="password" />
                 <DropdownField 
+                    style={styles.dropdownNationality}
                     placeholder="Nazionalità" 
                     options={[{name: "Italia", uri: require("../assets/italy.png") },
                             { name: "Francia", uri: require("../assets/france.png") }, 
@@ -33,13 +35,14 @@ export default function LoginScreen() {
                         textStyle={{ fontFamily: "Cabin-SemiBold", textDecorationLine: "none", color: '#2b2b2b', marginLeft: -9 }}
                         onPress={(isChecked) => {}}
                     />
-                    <Text style={styles.text}>Password dimenticata?</Text>
+                    <Text style={styles.textPassword}>Password dimenticata?</Text>
                 </View>
                 <BigButton title="Login" backgroundColor="#2AA9E1" style={{marginTop: 29}} />
-                {/* <View>
-                    <Text>Non hai un account?</Text>
+                </View>
+                <View style={{marginBottom: 25}}>
+                    <Text style={styles.text}>Non hai un account?</Text>
                     <BigButton title="Registrati" backgroundColor="#00608A" style={{marginTop: 24}} />
-                </View> */}
+                </View>
             </SafeAreaView>
         </TouchableWithoutFeedback>
     );
@@ -60,13 +63,24 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 21,
+    marginTop: 75,
     width: Dimensions.get('window').width - 32,
   },
-  text: {
+  textPassword: {
     fontFamily: "Cabin-SemiBold",
     color: '#00608A',
     textDecorationLine: 'underline',
     fontSize: 16,
+  },
+  text: {
+    fontFamily: "Cabin-Bold",
+    color: '#2B2B2B',
+    fontSize: 18,
+    textAlign: 'center'
+  },
+  dropdownNationality: {
+    position: 'absolute',
+    top: 385,
+    zIndex: 1
   }
 });
